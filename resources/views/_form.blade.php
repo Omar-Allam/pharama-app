@@ -1,3 +1,4 @@
+
 <div class="col-md-6">
     <div class="form-group">
         <label for="exampleInputName">Name</label>
@@ -42,13 +43,12 @@
         <input type="text" class="form-control" name="ar_name" id="exampleInputArName"
                placeholder="Arabic Name" value="{{$medicine->ar_name ?? ''}}">
     </div>
-
     <div class="form-group">
         <label for="exampleInputType">Type</label>
         <select class="form-control selection" name="type_id">
             <option value="">Select Type</option>
             @foreach(\App\Type::all() as $type)
-                <option value="{{$type->name}}" @if($type->name == $medicine->type) selected @endif >{{$type->name}}</option>
+                <option value="{{$type->name}}" @if(isset($medicine)  && $type->name == $medicine->type) selected @endif >{{$type->name}}</option>
             @endforeach
         </select>
     </div>
@@ -60,7 +60,7 @@
         <select class="form-control selection" name="company_id">
             <option value="">Select Company</option>
             @foreach(\App\Company::all() as $company)
-                <option value="{{$company->name}}" @if($company->name == $medicine->company) selected @endif>{{$company->name}}</option>
+                <option value="{{$company->name}}" @if(isset($medicine) && $company->name == $medicine->company) selected @endif>{{$company->name}}</option>
             @endforeach
         </select>
 
