@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Medicine;
 use Illuminate\Http\Request;
-use Imagick;
+use Intervention\Image\Facades\Image;
+
 class MedicineController extends Controller
 {
 
@@ -32,6 +33,9 @@ class MedicineController extends Controller
     public function store(Request $request)
     {
         $image = $request->file('image');
+        $img = Image::make($image)->resize(120, 120);
+
+
         Medicine::create([
             'name'=>$request->name,
             'active_constituent'=>$request->active_constituent,
@@ -44,7 +48,7 @@ class MedicineController extends Controller
             'capacity'=>$request->capacity,
             'dose_arabic'=>$request->dose_arabic,
             'usage_arabic'=>$request->usage_arabic,
-            'image'=>base64_encode(file_get_contents($image->getRealPath())),
+            'image'=> $image ? base64_encode($img->response('png')->content()) : '',
         ]);
         return redirect()->back();
     }
@@ -80,7 +84,9 @@ class MedicineController extends Controller
      */
     public function update(Request $request, Medicine $medicine)
     {
-        $image = $request->file('image') ;
+        $image = $request->file('image');
+        $img = Image::make($image)->resize(120, 120);
+
         $medicine->update([
             'name'=>$request->name,
             'active_constituent'=>$request->active_constituent,
@@ -93,9 +99,9 @@ class MedicineController extends Controller
             'capacity'=>$request->capacity,
             'dose_arabic'=>$request->dose_arabic,
             'usage_arabic'=>$request->usage_arabic,
-            'image'=> $image ? base64_encode(file_get_contents($image->getRealPath())) : $medicine->image,
+            'image'=> $image ? base64_encode($img->response('png')->content()) : $medicine->image,
         ]);
-        
+
         return redirect()->back();
     }
 
