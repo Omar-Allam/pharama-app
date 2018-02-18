@@ -9,7 +9,7 @@
                     <img src="data:image/jpeg;base64,{{$medicine->image}}" height="200" width="200"/>
                     <div class="caption">
                         <label>{{$medicine->name}} {{$medicine->capacity}}</label>
-                        <a href="#" class="btn btn-xs btn-warning" role="button">Edit</a>
+                        <a href="{{route('medicine.edit',$medicine)}}" class="btn btn-xs btn-warning" role="button" >Edit</a>
                     </div>
                 </div>
             </div>

@@ -20,7 +20,7 @@ class MedicineController extends Controller
      */
     public function create()
     {
-        return view('add-medicine');
+        return view('create');
     }
 
     /**
@@ -68,7 +68,7 @@ class MedicineController extends Controller
      */
     public function edit(Medicine $medicine)
     {
-        //
+        return view('edit',compact('medicine'));
     }
 
     /**
@@ -80,7 +80,23 @@ class MedicineController extends Controller
      */
     public function update(Request $request, Medicine $medicine)
     {
-        //
+        $image = $request->file('image') ;
+        $medicine->update([
+            'name'=>$request->name,
+            'active_constituent'=>$request->active_constituent,
+            'ar_name'=>$request->ar_name,
+            'dose'=>$request->dose,
+            'type'=>$request->type_id,
+            'usage'=>$request->usage,
+            'company'=>$request->company_id,
+            'price'=>$request->price,
+            'capacity'=>$request->capacity,
+            'dose_arabic'=>$request->dose_arabic,
+            'usage_arabic'=>$request->usage_arabic,
+            'image'=> $image ? base64_encode(file_get_contents($image->getRealPath())) : $medicine->image,
+        ]);
+        
+        return redirect()->back();
     }
 
     /**

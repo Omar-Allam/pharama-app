@@ -12,6 +12,7 @@
 */
 
 Route::resource('medicine','MedicineController');
+
 Route::get('/', function () {
     return view('index');
 });
