@@ -7,7 +7,7 @@
 
             <div class="col-sm-2">
                 <div class="thumbnail">
-                    <img src="data:image/jpeg;base64,{{$medicine->image}}" height="200" width="200"/>
+                    <img src="data:image/jpeg;base64,{{$medicine->image}}" style="max-height: 200px;max-width: 200px" height="200" width="200"/>
                     <div class="caption">
                         <h3>{{$medicine->name}}</h3>
                         <p>{{$medicine->capacity}}</p>
