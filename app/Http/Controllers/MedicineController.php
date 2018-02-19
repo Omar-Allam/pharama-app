@@ -11,7 +11,8 @@ class MedicineController extends Controller
 
     public function index()
     {
-        return view('index');
+        $medicines = \App\Medicine::paginate(50);
+        return view('index',compact('medicines'));
     }
 
     /**

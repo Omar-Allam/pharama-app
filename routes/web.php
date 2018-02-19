@@ -16,7 +16,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('medicine','MedicineController');
 
     Route::get('/', function () {
-        return view('index');
+        $medicines = \App\Medicine::paginate(50);
+        return view('index',compact('medicines'));
     });
 
 
