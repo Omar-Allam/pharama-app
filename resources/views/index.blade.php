@@ -5,7 +5,7 @@
     <div class="row">
         @foreach($medicines as $medicine)
 
-            <div class="col-sm-2">
+            <div class="col-sm-2" style="display: inline-table">
                 <div class="thumbnail">
                     <img src="data:image/jpeg;base64,{{$medicine->image}}" height="100%" width="100%"/>
                     <div class="caption">
