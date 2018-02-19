@@ -39,3 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index')->name('home');
 });
 Auth::routes();
+
+Route::get('register',function (){
+   return redirect()->route('login');
+})->name('register');
