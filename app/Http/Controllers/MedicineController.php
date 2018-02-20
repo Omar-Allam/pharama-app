@@ -34,7 +34,7 @@ class MedicineController extends Controller
     public function store(Request $request)
     {
         $image = $request->file('image');
-        $img = Image::make($image)->resize(120, 120);
+        $img = Image::make($image)->resize(90, 90);
 
 
         Medicine::create([
@@ -86,8 +86,7 @@ class MedicineController extends Controller
     public function update(Request $request, Medicine $medicine)
     {
         $image = $request->file('image');
-        $img = Image::make($image)->resize(120, 120);
-
+        $img = Image::make($image)->resize(90, 90);
         $medicine->update([
             'name'=>$request->name,
             'active_constituent'=>$request->active_constituent,
